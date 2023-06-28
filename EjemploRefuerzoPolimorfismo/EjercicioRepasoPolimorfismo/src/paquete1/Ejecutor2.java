@@ -14,10 +14,11 @@ public class Ejecutor2 {
 
         ArrayList<PasajeUrbano> pasajes = new ArrayList<>();
         String[] nombres = {"Austin", "Monique", "Glen", "Richard", "Patrick"};
-        String[] apellidos = {"Martinez", "Lyons", "Kim", "Tate", "Lee"};
+        String[] apellidos = {" Martinez ", " Lyons ", " Kim ", " Tate ", " Lee "};
+        String[] cedulas = {"11100", "111", "1111", "1213", "12424"};
         int[] edad = {9, 70, 35, 23, 10};
         double pasajeFijo = 0.4;
-        
+
         /*
         Generar un proceso que permita iterar los arreglos; el objetivo es 
         crear objetos de tipo Pasaje Menor de edad, Pasaje Normal, Pasaje 
@@ -35,17 +36,38 @@ public class Ejecutor2 {
         normal: mayor a 25 y menor 65
         tercera edad: mayor o igual a 65
         
-        */
+         */
         // inicio de solución
-        
-        
+        for (int i = 0; i < nombres.length; i++) {
+            if (edad[i] <= 18) {
+                PasajeMenorEdad pa = new PasajeMenorEdad(pasajeFijo);
+                Persona persona1 = new Persona(nombres[i] + apellidos[i], cedulas[i], edad[i]);
+                pa.establecerPersona(persona1);
+                pasajes.add(pa);
+            } else if (edad[i] <= 25) {
+                PasajeUniversitario pm = new PasajeUniversitario(pasajeFijo);
+                Persona persona2 = new Persona(nombres[i] + apellidos[i], cedulas[i], edad[i]);
+                pm.establecerPersona(persona2);
+                pasajes.add(pm);
+            } else if (edad[i] <= 65) {
+                PasajeNormal pt = new PasajeNormal(pasajeFijo);
+                Persona persona3 = new Persona(nombres[i] + apellidos[i], cedulas[i], edad[i]);
+                pt.establecerPersona(persona3);
+                pasajes.add(pt);
+            } else if (edad[i] >= 65) {
+                PasajeTerceraEdad pu = new PasajeTerceraEdad(pasajeFijo);
+                Persona persona4 = new Persona(nombres[i] + apellidos[i], cedulas[i], edad[i]);
+                pu.establecerPersona(persona4);
+                pasajes.add(pu);
+            }
+        }
+
         // fin  de solución
-        
         // no incrementar líneas de código desde aquí
         for (int i = 0; i < pasajes.size(); i++) {
             pasajes.get(i).establecerValorPasaje();
         }
-        
+
         for (int i = 0; i < pasajes.size(); i++) {
             System.out.printf("%s\n",
                     pasajes.get(i));
